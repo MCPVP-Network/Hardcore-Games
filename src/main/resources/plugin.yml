@@ -1,0 +1,3 @@
+name: ${project.artifactId}
+main: com.mcpvp.hardcoregames.HardcoreGamesPlugin
+version: ${project.version}
