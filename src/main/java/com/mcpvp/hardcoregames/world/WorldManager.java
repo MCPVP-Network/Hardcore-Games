@@ -5,6 +5,7 @@ import com.mcpvp.hardcoregames.HardcoreGamesPlugin;
 import com.mcpvp.hardcoregames.HardcoreGamesSettings;
 import com.mcpvp.hardcoregames.commons.Callback;
 import com.mcpvp.hardcoregames.commons.CordPair;
+import net.minecraft.server.v1_8_R3.BiomeBase;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -12,6 +13,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -126,6 +129,7 @@ public class WorldManager
                 if (!cordsItel.hasNext())
                 {
                     world.save();
+                    System.out.println("Done " + world.getName() + "!");
                     cancel();
                 }
             }
@@ -146,7 +150,7 @@ public class WorldManager
         World hgWorld = Bukkit.getWorld(worldName);
         if(hgWorld != null)
         {
-            for (Player onlinePlayer : Bukkit.getOnlinePlayers())
+            for (Player onlinePlayer : hgWorld.getPlayers())
                 onlinePlayer.kickPlayer("RESTARTING WORLD");
 
             Bukkit.unloadWorld(hgWorld, false);

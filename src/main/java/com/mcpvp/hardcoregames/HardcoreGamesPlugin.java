@@ -1,7 +1,8 @@
 package com.mcpvp.hardcoregames;
 
+import com.mcpvp.hardcoregames.commons.BiomeUtils;
+import com.mcpvp.hardcoregames.listeners.PlayerListener;
 import com.mcpvp.hardcoregames.world.WorldManager;
-import com.sun.tools.internal.ws.processor.util.DirectoryUtil;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -27,9 +28,19 @@ public class HardcoreGamesPlugin extends JavaPlugin
     @Override
     public void onEnable()
     {
+        try {
+            BiomeUtils.removeLargeOceans();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         initApi();
 
         HardcoreGames.getWorldManager().createWorld(HardcoreGamesSettings.HG_WORLD_NAME, HardcoreGamesSettings.HG_WORLD_SIZE);
+
+        //Listeners
+        new PlayerListener().enable();
+
     }
 
     public void initApi()
