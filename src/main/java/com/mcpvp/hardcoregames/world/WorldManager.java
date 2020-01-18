@@ -74,6 +74,7 @@ public class WorldManager
         World world = worldCreator.createWorld();
 
         //Apply world options
+        world.setSpawnLocation(0, world.getHighestBlockYAt(0, 0), 0);
 
         return world;
     }
