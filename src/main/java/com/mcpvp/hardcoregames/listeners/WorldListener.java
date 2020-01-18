@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 
 public class WorldListener extends Listenable<HardcoreGamesPlugin>
 {
@@ -82,5 +83,11 @@ public class WorldListener extends Listenable<HardcoreGamesPlugin>
         {
             e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onPortalEnter(PlayerPortalEvent event)
+    {
+        event.setCancelled(true);
     }
 }
