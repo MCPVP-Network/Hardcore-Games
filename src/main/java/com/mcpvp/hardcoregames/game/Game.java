@@ -21,7 +21,7 @@ public class Game implements Runnable
     private int RemainingSeconds;
     @Getter
     private GameState gameState = GameState.INIT;
-
+    @Getter
     private Feast feast;
 
     public Game()

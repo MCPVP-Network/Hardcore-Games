@@ -44,10 +44,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mcpvp.hardcoregames.kit.kits" />
       <recent name="com.mcpvp.hardcoregames.listeners" />
     </key>
   </component>
@@ -134,26 +135,26 @@
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
     <state x="1660" y="419" key="FileChooserDialogImpl/0.0.2498.1440@0.0.2498.1440" timestamp="1579260552817" />
-    <state width="1340" height="259" key="GridCell.Tab.0.bottom" timestamp="1579318819998">
+    <state width="1340" height="259" key="GridCell.Tab.0.bottom" timestamp="1579322273624">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
-    <state width="1340" height="259" key="GridCell.Tab.0.bottom/0.0.2498.1440@0.0.2498.1440" timestamp="1579318819998" />
-    <state width="1340" height="259" key="GridCell.Tab.0.center" timestamp="1579318819997">
+    <state width="1340" height="259" key="GridCell.Tab.0.bottom/0.0.2498.1440@0.0.2498.1440" timestamp="1579322273624" />
+    <state width="1340" height="259" key="GridCell.Tab.0.center" timestamp="1579322273624">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
-    <state width="1340" height="259" key="GridCell.Tab.0.center/0.0.2498.1440@0.0.2498.1440" timestamp="1579318819997" />
-    <state width="1340" height="259" key="GridCell.Tab.0.left" timestamp="1579318819997">
+    <state width="1340" height="259" key="GridCell.Tab.0.center/0.0.2498.1440@0.0.2498.1440" timestamp="1579322273624" />
+    <state width="1340" height="259" key="GridCell.Tab.0.left" timestamp="1579322273624">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
-    <state width="1340" height="259" key="GridCell.Tab.0.left/0.0.2498.1440@0.0.2498.1440" timestamp="1579318819997" />
-    <state width="1340" height="259" key="GridCell.Tab.0.right" timestamp="1579318819997">
+    <state width="1340" height="259" key="GridCell.Tab.0.left/0.0.2498.1440@0.0.2498.1440" timestamp="1579322273624" />
+    <state width="1340" height="259" key="GridCell.Tab.0.right" timestamp="1579322273624">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
-    <state width="1340" height="259" key="GridCell.Tab.0.right/0.0.2498.1440@0.0.2498.1440" timestamp="1579318819997" />
-    <state x="1036" y="262" key="SettingsEditor" timestamp="1579261866016">
+    <state width="1340" height="259" key="GridCell.Tab.0.right/0.0.2498.1440@0.0.2498.1440" timestamp="1579322273624" />
+    <state x="376" y="168" key="SettingsEditor" timestamp="1579321000583">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>
-    <state x="1036" y="262" key="SettingsEditor/0.0.2498.1440@0.0.2498.1440" timestamp="1579261866016" />
+    <state x="376" y="168" key="SettingsEditor/0.0.2498.1440@0.0.2498.1440" timestamp="1579321000583" />
     <state x="1161" y="370" width="672" height="678" key="search.everywhere.popup" timestamp="1579312801871">
       <screen x="0" y="0" width="2498" height="1440" />
     </state>

@@ -1,5 +1,6 @@
 package com.mcpvp.hardcoregames.playerdata;
 
+import com.mcpvp.hardcoregames.kit.Kit;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,9 @@ public class PlayerData
     private boolean alive = false;
     @Getter @Setter
     private boolean staffMode = false;
+
+    @Getter @Setter
+    private Kit kit;
 
     public Player getPlayer()
     {

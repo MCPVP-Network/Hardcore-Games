@@ -6,6 +6,7 @@ import com.mcpvp.hardcoregames.HardcoreGamesSettings;
 import com.mcpvp.hardcoregames.commons.Listenable;
 import com.mcpvp.hardcoregames.commons.MathUtils;
 import com.mcpvp.hardcoregames.customevents.GameStateChangeEvent;
+import com.mcpvp.hardcoregames.feast.Feast;
 import com.mcpvp.hardcoregames.game.GameState;
 import com.mcpvp.hardcoregames.playerdata.PlayerData;
 import org.bukkit.Location;
@@ -63,6 +64,19 @@ public class CompassListener extends Listenable<HardcoreGamesPlugin>
             else
             {
                 player.sendMessage("No targets found");
+            }
+        }
+        else
+        {
+            Feast feast = HardcoreGames.getGame().getFeast();
+            if(feast == null)
+            {
+                player.sendMessage("There currently no feast");
+            }
+            else
+            {
+                player.sendMessage("The compass is now pointing at the feast");
+                player.setCompassTarget(feast.getLocation());
             }
         }
     }

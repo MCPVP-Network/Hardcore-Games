@@ -1,5 +1,6 @@
 package com.mcpvp.hardcoregames;
 
+import com.mcpvp.hardcoregames.command.commands.KitCommand;
 import com.mcpvp.hardcoregames.commons.BiomeUtils;
 import com.mcpvp.hardcoregames.feast.Feast;
 import com.mcpvp.hardcoregames.game.Game;
@@ -54,18 +55,31 @@ public class HardcoreGamesPlugin extends JavaPlugin
 
         HardcoreGames.getWorldManager().createWorld(HardcoreGamesSettings.HG_WORLD_NAME, HardcoreGamesSettings.HG_WORLD_SIZE);
 
-        //Listeners
+        registerListeners();
+        registerCommands();
+    }
+
+
+    public void registerListeners()
+    {
         new PlayerListener().enable();
         new GameListener().enable();
         new WorldListener().enable();
         new CompassListener().enable();
-
     }
+
+    public void registerCommands()
+    {
+        HardcoreGames.getCommandManager().registerCommand(new KitCommand());
+    }
+
 
     public void initApi()
     {
         HardcoreGames.getWorldManager();
         HardcoreGames.getPlayerManager();
+        HardcoreGames.getKitManager();
+        HardcoreGames.getKitManager();
 
         HardcoreGames.getPlugin();
 

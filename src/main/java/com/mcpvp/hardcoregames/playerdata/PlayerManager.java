@@ -1,5 +1,7 @@
 package com.mcpvp.hardcoregames.playerdata;
 
+import org.bukkit.entity.Player;
+
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -10,6 +12,16 @@ public class PlayerManager
     public void registerPlayerData(PlayerData playerData)
     {
         this.playerDatas.put(playerData.getUniqueId(), playerData);
+    }
+
+    public PlayerData getPlayerData(Player player)
+    {
+        return getPlayerData(player.getUniqueId());
+    }
+
+    public PlayerData getPlayerData(UUID uniqueId)
+    {
+        return this.playerDatas.get(uniqueId);
     }
 
     public void unregisterPlayerData(UUID uniqueId)
