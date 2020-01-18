@@ -2,6 +2,7 @@ package com.mcpvp.hardcoregames.game;
 
 import com.mcpvp.hardcoregames.HardcoreGames;
 import com.mcpvp.hardcoregames.HardcoreGamesSettings;
+import com.mcpvp.hardcoregames.commons.CC;
 import com.mcpvp.hardcoregames.commons.MathUtils;
 import com.mcpvp.hardcoregames.customevents.GameStateChangeEvent;
 import com.mcpvp.hardcoregames.feast.Feast;
@@ -48,6 +49,13 @@ public class Game implements Runnable
     }
 
 
+    public void startBroadcast(int players)
+    {
+        Bukkit.broadcastMessage(CC.red + "The Tournament has begun!");
+        Bukkit.broadcastMessage(CC.red + "There are " + players + " players participating.");
+        Bukkit.broadcastMessage(CC.red + "Everyone is invincible for 2 minutes.");
+        Bukkit.broadcastMessage(CC.red + "Good Luck!");
+    }
 
 
     public void start()
@@ -84,10 +92,14 @@ public class Game implements Runnable
             case COUNTINGDOWN:
                 if(playerCount < HardcoreGamesSettings.MIN_PLAYERS_TO_START)
                     this.setGameState(GameState.WAITING_FOR_PLAYERS);
-                else
+                else {
                     this.setGameState(GameState.GRACE_PERIOD);
+                    this.start();
+                }
                 break;
             case GRACE_PERIOD:
+                Bukkit.broadcastMessage(CC.red + "Invincibility wears off");
+                Bukkit.broadcastMessage(CC.red + "You are no longer invincible.");
                 this.setGameState(GameState.LIVE);
                 break;
             case LIVE:
@@ -116,7 +128,7 @@ public class Game implements Runnable
     {
         if(this.winnerPlayer != null && this.winnnerBroadcastCount >= 0)
         {
-            Bukkit.broadcastMessage(this.winnerPlayer.getName() + " wins");
+            Bukkit.broadcastMessage(CC.red + this.winnerPlayer.getName() + " wins");
             this.winnnerBroadcastCount--;
             return;
         }
@@ -135,6 +147,23 @@ public class Game implements Runnable
         }
 
         //logic
+        if(this.getGameState() == GameState.GRACE_PERIOD && (this.getRemainingSeconds() == 120 ||
+                                                             this.getRemainingSeconds() == 60 ||
+                                                             this.getRemainingSeconds() % 30 == 0 ||
+                                                             this.getRemainingSeconds() % 15 == 0 && this.getRemainingSeconds() <= 60 ||
+                                                             this.getRemainingSeconds() <= 10 ))
+        {
+            Bukkit.broadcastMessage(CC.red + "Invincibility wears off in " + this.getRemainingSeconds() + " second" + (this.getRemainingSeconds() == 1 ? "" : "s"));
+        }
+
+        if(this.getGameState() == GameState.COUNTINGDOWN && (this.getRemainingSeconds() % 60  == 0 ||
+                this.getRemainingSeconds() % 30 == 0 ||
+                this.getRemainingSeconds() % 15 == 0 && this.getRemainingSeconds() <= 60 ||
+                this.getRemainingSeconds() <= 10 ))
+        {
+            Bukkit.broadcastMessage(CC.red + "The Tournament will start in " + this.getRemainingSeconds() + " second" + (this.getRemainingSeconds() == 1 ? "" : "s"));
+        }
+
         System.out.println(this.getGameState().name() + " =?> " + getSeconds());
         if(this.getGameState() == GameState.LIVE)
         {
