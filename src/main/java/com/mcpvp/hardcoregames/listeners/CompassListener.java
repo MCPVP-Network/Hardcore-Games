@@ -49,7 +49,7 @@ public class CompassListener extends Listenable<HardcoreGamesPlugin>
                 if(curTarget == null) continue;
 
                 double distance = loc.distanceSquared(curTarget.getLocation());
-                if(distance < closetsDis && closetsDis > HardcoreGamesSettings.COMPASS_MIN_DISTANCE_SQARED)
+                if(distance < closetsDis && distance > HardcoreGamesSettings.COMPASS_MIN_DISTANCE_SQARED)
                 {
                     closetsDis = distance;
                     victim = curTarget;
