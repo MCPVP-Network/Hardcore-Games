@@ -5,9 +5,11 @@ import com.mcpvp.hardcoregames.HardcoreGamesSettings;
 import com.mcpvp.hardcoregames.commons.MathUtils;
 import com.mcpvp.hardcoregames.customevents.GameStateChangeEvent;
 import com.mcpvp.hardcoregames.feast.Feast;
+import com.mcpvp.hardcoregames.playerdata.PlayerData;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 /**
  * Wait for enough players to join
@@ -24,6 +26,9 @@ public class Game implements Runnable
     @Getter
     private Feast feast;
 
+    private Player winnerPlayer;
+    private int winnnerBroadcastCount = 5;
+
     public Game()
     {
         this.setGameState(GameState.WAITING_FOR_PLAYERS);
@@ -37,6 +42,10 @@ public class Game implements Runnable
     }
 
 
+    public boolean checkWin()
+    {
+        return !HardcoreGamesSettings.DEV_MODE && this.getGameState() == GameState.LIVE && HardcoreGames.getPlayerManager().getAlivePlayerCount() == 1;
+    }
 
 
 
@@ -105,6 +114,25 @@ public class Game implements Runnable
     @Override
     public void run()
     {
+        if(this.winnerPlayer != null && this.winnnerBroadcastCount >= 0)
+        {
+            Bukkit.broadcastMessage(this.winnerPlayer.getName() + " wins");
+            this.winnnerBroadcastCount--;
+            return;
+        }
+
+        if(this.checkWin())
+        {
+            this.setGameState(GameState.CHAMPION);
+            for (PlayerData player : HardcoreGames.getPlayerManager().getPlayers())
+            {
+                if(player.isAlive())
+                {
+                    this.winnerPlayer = player.getPlayer();
+                    break;
+                }
+            }
+        }
 
         //logic
         System.out.println(this.getGameState().name() + " =?> " + getSeconds());

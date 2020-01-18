@@ -53,7 +53,7 @@ public class Kit extends Listenable<HardcoreGamesPlugin> {
     public void addItem(ItemStack item)
     {
         int lastSlotEmpty = 0;
-        for(int i = 0; i < this.getItems().size(); i++)
+        for(int i = 0; i < 36; i++)
         {
             ItemStack slottedItem = this.getItem(i);
             if(slottedItem == null || slottedItem.getType() == Material.AIR) {

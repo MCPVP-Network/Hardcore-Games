@@ -3,21 +3,26 @@ package com.mcpvp.hardcoregames.listeners;
 import com.mcpvp.hardcoregames.HardcoreGames;
 import com.mcpvp.hardcoregames.HardcoreGamesPlugin;
 import com.mcpvp.hardcoregames.HardcoreGamesSettings;
+import com.mcpvp.hardcoregames.commons.CC;
+import com.mcpvp.hardcoregames.commons.ItemStackBuilder;
 import com.mcpvp.hardcoregames.commons.Listenable;
 import com.mcpvp.hardcoregames.commons.MathUtils;
 import com.mcpvp.hardcoregames.customevents.GameStateChangeEvent;
 import com.mcpvp.hardcoregames.game.GameState;
 import com.mcpvp.hardcoregames.playerdata.PlayerData;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
 public class GameListener extends Listenable<HardcoreGamesPlugin>
 {
+    private static final ItemStack COMPASS = new ItemStackBuilder(Material.COMPASS).displayName(CC.green + "Tracking Compass").build();
 
     public GameListener()
     {
@@ -34,6 +39,7 @@ public class GameListener extends Listenable<HardcoreGamesPlugin>
         {
             for (PlayerData playerData : playerDatas)
             {
+                Player player = playerData.getPlayer();
                 playerData.setAlive(true);
                 int x = MathUtils.r(16);
                 int z = MathUtils.r(16);
@@ -42,8 +48,18 @@ public class GameListener extends Listenable<HardcoreGamesPlugin>
                 Location personalSpawn = spawn.clone();
                 personalSpawn.add(x, 0, z);
                 personalSpawn.setY(y);
-                playerData.getPlayer().sendMessage("Spawning at " + x + ", " + y + ", " + z);
-                playerData.getPlayer().teleport(personalSpawn);
+
+                player.teleport(personalSpawn);
+                player.setHealth(20);
+                player.setFoodLevel(20);
+                player.getInventory().clear();
+                player.setLevel(0);
+                player.setExp(0.0f);
+
+                if(playerData.getKit() != null)
+                    playerData.getKit().apply(player);
+                player.getInventory().addItem(COMPASS);
+
             }
         }
     }
