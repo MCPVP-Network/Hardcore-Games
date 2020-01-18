@@ -60,7 +60,6 @@ public class HardcoreGamesPlugin extends JavaPlugin
         new WorldListener().enable();
         new CompassListener().enable();
 
-        new Feast(new Location(HardcoreGamesSettings.getHGWorld(),0, 100, 0)).generatePlatform();
     }
 
     public void initApi()

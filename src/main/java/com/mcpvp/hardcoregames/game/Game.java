@@ -2,9 +2,12 @@ package com.mcpvp.hardcoregames.game;
 
 import com.mcpvp.hardcoregames.HardcoreGames;
 import com.mcpvp.hardcoregames.HardcoreGamesSettings;
+import com.mcpvp.hardcoregames.commons.MathUtils;
 import com.mcpvp.hardcoregames.customevents.GameStateChangeEvent;
+import com.mcpvp.hardcoregames.feast.Feast;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 /**
  * Wait for enough players to join
@@ -18,6 +21,8 @@ public class Game implements Runnable
     private int RemainingSeconds;
     @Getter
     private GameState gameState = GameState.INIT;
+
+    private Feast feast;
 
     public Game()
     {
@@ -103,6 +108,22 @@ public class Game implements Runnable
 
         //logic
         System.out.println(this.getGameState().name() + " =?> " + getSeconds());
+        if(this.getGameState() == GameState.LIVE)
+        {
+            if( this.getSeconds() == 60 * 12)
+            {
+                int x = MathUtils.r(200) - 100;
+                int z = MathUtils.r(200) - 100;
+
+                feast = new Feast(new Location(HardcoreGamesSettings.getHGWorld(), x, 50, z));
+            }
+
+            if( this.getSeconds() == 60 * 18)
+            {
+                feast.generatePlatform();
+                feast.generateChests();
+            }
+        }
 
         //update times
         if (this.getGameState().isTimable())
