@@ -68,7 +68,7 @@ public class PlayerListener extends Listenable<HardcoreGamesPlugin>
     public void onRespawn(PlayerRespawnEvent e)
     {
         Player player = e.getPlayer();
-        
+
         deathKick(player);
     }
 

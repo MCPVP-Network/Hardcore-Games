@@ -107,6 +107,10 @@ public class Game implements Runnable
                 break;
             case CHAMPION:
                 this.setGameState(GameState.SHUT_DOWN);
+                for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                    onlinePlayer.kickPlayer(CC.green + "Thanks for playing!");
+                }
+                Bukkit.shutdown();
                 break;
             case SHUT_DOWN:
                 break;
